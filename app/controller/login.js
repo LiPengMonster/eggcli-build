@@ -1,17 +1,21 @@
 'use strict';
 
 const Controller = require('egg').Controller;
+/**
+ * @param {Egg.EggAppInfo} appInfo app info
+ */
+
 
 class LoginController extends Controller {
-  // async find(uid) {
-  //   const user = await this.ctx.db.query('select * from user where uid =？', uid);
-  //   return user;
-  // }
 
+  //
   async find() {
-    const { ctx } = this;
+    const {
+      ctx,
+    } = this;
 
-    const user = await { id: 1, name: 2 };
+    const user = await this.app.mysql.query('select * from users'); // 单实例可以直接通过 app.mysql 访问
+    console.log(user);
     ctx.body = user;
     return ctx.body;
   }

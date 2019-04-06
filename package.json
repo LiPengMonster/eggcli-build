@@ -7,8 +7,17 @@
     "declarations": true
   },
   "dependencies": {
+    "biguint-format": "^1.0.1",
     "egg": "^2.15.1",
-    "egg-scripts": "^2.11.0"
+    "egg-mysql": "^3.0.0",
+    "egg-scripts": "^2.11.0",
+    "egg-sequelize": "^4.3.1",
+    "egg-static": "^2.2.0",
+    "egg-view-nunjucks": "^2.2.0",
+    "flake-idgen": "^1.1.2",
+    "mysql2": "^1.6.5",
+    "sequelize": "^5.2.6",
+    "sequelize-cli": "^5.4.0"
   },
   "devDependencies": {
     "autod": "^3.0.1",
@@ -18,6 +27,7 @@
     "egg-mock": "^3.21.0",
     "eslint": "^5.13.0",
     "eslint-config-egg": "^7.1.0",
+    "sequelize-cli": "^5.4.0",
     "webstorm-disable-index": "^1.2.0"
   },
   "engines": {
@@ -32,7 +42,7 @@
     "test-local": "egg-bin test",
     "cov": "egg-bin cov",
     "lint": "eslint .",
-    "ci": "npm run lint && npm run cov",
+    "ci": "eslint . && NODE_ENV=test npx sequelize db:migrate && egg-bin cov",
     "autod": "autod"
   },
   "ci": {

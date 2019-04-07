@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "root",
+    "password": "!QAZ2wsx",
+    "database": "monster_db",
+    "host": "rm-bp12ho57bx75k76ryco.mysql.rds.aliyuncs.com",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "root",
+    "password": "!QAZ2wsx",
+    "database": "monster_test",
+    "host": "rm-bp12ho57bx75k76ryco.mysql.rds.aliyuncs.com",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "root",
+    "password": "!QAZ2wsx",
+    "database": "monster_db",
+    "host": "rm-bp12ho57bx75k76ryco.mysql.rds.aliyuncs.com",
+    "dialect": "mysql"
+  }
+}

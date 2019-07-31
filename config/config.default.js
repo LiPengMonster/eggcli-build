@@ -2,6 +2,10 @@
 
 'use strict';
 const path = require('path');
+const {
+  NOT_AUTH,
+} = require('../app/utils/const-base.js');
+
 
 /**
  * @param {Egg.EggAppInfo} appInfo app info
@@ -26,23 +30,64 @@ module.exports = appInfo => {
   config.keys = appInfo.name + '_1552405209915_659';
 
   // add your middleware config here
-  config.middleware = [];
+  config.middleware = [ 'requestcheck' ];
+  config.requestcheck = {
+    enable: true,
+    match(ctx) {
 
+      for (const item of ctx.app.router.stack) {
+        if (item.path === ctx.path && !NOT_AUTH.find( // 路由中存在访问路径并且常量路由集合不等于访问路径进入中间件
+          p =>
+            p === ctx.path
+            // _.startsWith(ctx.path, '/')
+        )) {
+          return true;
+        }
+      }
+      return false;
+    },
+  };
+  config.redis = {
+    // your redis configurations
+    client: {
+      port: 6379, // Redis port
+      host: '127.0.0.1', // Redis host
+      password: '',
+      db: 0,
+    },
+  };
+  config.session = {
+    // your redis configurations
+    // maxAge: 24 * 3600 * 1000, // ms
+    // key: 'EGG_SESS',
+    // httpOnly: true,
+    // encrypt: true,
+  };
   // add your user config here
   const userConfig = {
     // myAppName: 'egg',
   };
   // csrf
   config.security = {
-    csrf: {
-      enable: false,
-    },
+    csrf: false,
+    // debug: 'csrf-disable',
+    // domainWhiteList: [ 'http://localhost:8089' ],
+    // methodnoallow: {
+    //   enable: false,
+    // },
   };
+  // config.cors = {
+  //   origin: '*',
+  //   allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH,OPTIONS',
+  // };
   config.static = {
-    prefix: '/public',
+    prefix: '/',
     dir: path.join(appInfo.baseDir, 'app/public'),
   };
-
+  config.bodyParser = {
+    jsonLimit: '10mb',
+    formLimit: '10mb',
+  };
   config.mysql = {
     // 单数据库信息配置
     client: {
@@ -76,6 +121,7 @@ module.exports = appInfo => {
     password: '!QAZ2wsx',
     // 数据库
     database: 'monster_db',
+    Sequelize: require('sequelize'),
   };
   return {
     ...config,

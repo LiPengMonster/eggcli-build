@@ -6,15 +6,15 @@ class PostsController extends Controller {
   async index() {
     const ctx = this.ctx;
     const query = {
-      limit: ctx.helper.parseInt(ctx.query.limit),
-      offset: ctx.helper.parseInt(ctx.query.offset),
+      limit: ctx.helper.toInt(ctx.query.limit),
+      offset: ctx.helper.toInt(ctx.query.offset),
     };
     ctx.body = await ctx.service.posts.list(query);
   }
 
   async show() {
     const ctx = this.ctx;
-    ctx.body = await ctx.service.posts.find(ctx.helper.parseInt(ctx.params.id));
+    ctx.body = await ctx.service.posts.find(ctx.helper.toInt(ctx.params.id));
   }
 
   async create() {
@@ -40,8 +40,8 @@ class PostsController extends Controller {
 
   async destroy() {
     const ctx = this.ctx;
-    const id = ctx.helper.parseInt(ctx.params.id);
-    const users_id = ctx.helper.parseInt(ctx.request.body.users_id);
+    const id = ctx.helper.toInt(ctx.params.id);
+    const users_id = ctx.helper.toInt(ctx.request.body.users_id);
     await ctx.service.posts.destroy({
       id,
       users_id,

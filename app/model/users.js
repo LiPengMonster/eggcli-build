@@ -20,14 +20,30 @@ module.exports = app => {
         primaryKey: true,
         defaultValue: () => intformat(flakeIdGen.next(), 'dec'),
       },
+      // 用户名
+      nickname: STRING(30),
+      // 性别
+      sex: INTEGER,
+      // 电话
+      phone: STRING(30),
+      // 头像图片名称
+      avatar: STRING(255),
+      // 默认邮箱
+      email: STRING(255),
+      // 出生日期
+      birthday: DATE,
+      // 省
+      province: INTEGER,
+      // 市
+      city: INTEGER,
+      // 区
+      region: INTEGER,
+      // 是否有效
+      status: INTEGER,
       //
-      name: STRING(20),
+      createdAt: DATE,
       //
-      age: INTEGER,
-      //
-      created_at: DATE,
-      //
-      updated_at: DATE,
+      updatedAt: DATE,
 
     }, {
       timestamps: true,
@@ -40,6 +56,10 @@ module.exports = app => {
       // deletedAt: '',
     }
   );
-
+  UsersDo.associate = function() {
+    app.model.Users.hasOne(app.model.UsersAuths, {
+      foreignKey: 'usersId',
+    });
+  };
   return UsersDo;
 };

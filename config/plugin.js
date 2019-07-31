@@ -9,6 +9,10 @@ module.exports = {
     enable: true, // 启动
     package: 'egg-static',
   },
+  // cors: {
+  //   enable: true,
+  //   package: 'egg-cors',
+  // },
   security: {
     enable: false,
   },
@@ -23,5 +27,12 @@ module.exports = {
   sequelize: {
     enable: true,
     package: 'egg-sequelize',
+  },
+  redis: {
+    enable: true,
+    package: 'egg-redis',
+  },
+  session: {
+    enable: true,
   },
 };

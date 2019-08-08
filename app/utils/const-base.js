@@ -1,8 +1,8 @@
 /*
- * @Author: 吴占超
+ * @Author: 李鹏
  * @Date: 2019-03-03 11:55:41
- * @Last Modified by: 吴占超
- * @Last Modified time: 2019-06-26 22:46:17
+ * @Last Modified by: 李鹏
+ * @Last Modified time: 2019-08-08 19:34:41
  * 常量表
  */
 'use strict';
@@ -17,5 +17,5 @@ module.exports = {
     '/home',
     '/img',
   ],
-  avatar: '/app/public/avatar',
+  avatar: '/app/static/avatar',
 };

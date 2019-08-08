@@ -4,7 +4,6 @@ const Controller = require('egg').Controller;
 
 class SysCityController extends Controller {
   async index() {
-
     const ctx = this.ctx;
 
     const query = {
@@ -17,7 +16,7 @@ class SysCityController extends Controller {
 
   async show() {
     const ctx = this.ctx;
-    console.log(ctx.params.pid);
+
     const query = {
       limit: ctx.helper.toInt(ctx.query.limit),
       offset: ctx.helper.toInt(ctx.query.offset),

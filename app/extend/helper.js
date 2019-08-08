@@ -18,7 +18,6 @@ module.exports = {
       case 215: { // 判断是否刷新token
         // 获取token
         const oldtoken = ctx.request.header.authorization;
-        console.log(oldtoken);
         if (oldtoken) { // 验证旧token是否为空
           const {
             username,

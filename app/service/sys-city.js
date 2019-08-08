@@ -21,15 +21,12 @@ class SysCity extends Service {
         pid,
       };
     }
-    return this.ctx.model.SysCity.findAndCountAll(options);
+    return await this.ctx.model.SysCity.findAndCountAll(options);
   }
 
   async find(id) {
-    console.log(this.ctx.model.SysCity);
     const syscity = await this.ctx.model.SysCity.findByPk(id);
-    if (!syscity) {
-      this.ctx.throw(404, 'syscity not found');
-    }
+    !syscity && (this.ctx.throw(404, 'syscity not found'));
     return syscity;
   }
 }

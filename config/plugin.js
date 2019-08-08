@@ -29,7 +29,7 @@ module.exports = {
     package: 'egg-sequelize',
   },
   redis: {
-    enable: true,
+    enable: false,
     package: 'egg-redis',
   },
   session: {

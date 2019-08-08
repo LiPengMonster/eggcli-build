@@ -1,7 +1,6 @@
 'use strict';
 // app.js
 module.exports = app => {
-  console.log(typeof app);
   app._ = require('lodash');
   // set redis session store
   // session store must have 3 methods

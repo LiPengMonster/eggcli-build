@@ -2,6 +2,7 @@
 
 'use strict';
 const path = require('path');
+const _ = require('lodash');
 const {
   NOT_AUTH,
 } = require('../app/utils/const-base.js');
@@ -30,16 +31,17 @@ module.exports = appInfo => {
   config.keys = appInfo.name + '_1552405209915_659';
 
   // add your middleware config here
-  config.middleware = [ 'requestcheck' ];
-  config.requestcheck = {
+  config.middleware = [ 'midHttp' ];
+  config.midHttp = {
     enable: true,
     match(ctx) {
 
       for (const item of ctx.app.router.stack) {
-        if (item.path === ctx.path && !NOT_AUTH.find( // 路由中存在访问路径并且常量路由集合不等于访问路径进入中间件
+        // console.log(ctx.path);
+        if ((ctx.path === item.path || _.startsWith(ctx.path, item.path + '/')) && !NOT_AUTH.find( // 路由中存在访问路径并且常量路由集合不等于访问路径进入中间件
           p =>
             p === ctx.path
-            // _.startsWith(ctx.path, '/')
+
         )) {
           return true;
         }
@@ -82,7 +84,7 @@ module.exports = appInfo => {
   // };
   config.static = {
     prefix: '/',
-    dir: path.join(appInfo.baseDir, 'app/public'),
+    dir: [ path.join(appInfo.baseDir, 'app/public'), path.join(appInfo.baseDir, 'app/static') ],
   };
   config.bodyParser = {
     jsonLimit: '10mb',

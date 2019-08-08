@@ -10,36 +10,22 @@ function toInt(str) {
 
 class UsersController extends Controller {
   async index() {
-    console.log('myedit');
+
     const ctx = this.ctx;
     const query = {
       limit: toInt(ctx.query.limit),
       offset: toInt(ctx.query.offset),
     };
-    console.log(ctx.status);
-    const data = await ctx.service.users.list(query);
-    if (data) {
-      ctx.helper.success(ctx, {
-        code: 220,
-        msg: 'success',
-        data,
-      });
-    } else {
-      ctx.helper.fail(ctx, {
-        code: 420,
-        msg: 'fail',
-        data,
-      });
-    }
+    ctx.body = await ctx.service.users.list(query);
   }
 
   async updateAvatar() { // 获取用户id,图片资源,此处读取stream
-    console.log('shangchuanwenjian');
+
     const ctx = this.ctx;
     ctx.body = await ctx.service.users.updateAvatar();
   }
   async uploadfile() { // 获取用户id,图片资源,此处读取stream
-    console.log('shangchuanwenjian');
+
     const ctx = this.ctx;
     ctx.body = await ctx.service.users.uploadfile();
   }
@@ -74,7 +60,6 @@ class UsersController extends Controller {
       region,
       status,
     });
-    ctx.status = 201;
     ctx.body = users;
   }
 

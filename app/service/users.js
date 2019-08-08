@@ -20,10 +20,8 @@ class Users extends Service {
       basedir: ctx.app.config.baseDir,
       writepath: avatar,
     }).then(_filename => {
-      console.log('_filename我是恢复文件');
       console.log(_filename);
     }).catch(error => {
-      console.log('_filename我是恢复文件4234234');
       console.log(error);
     });
   }
@@ -40,7 +38,6 @@ class Users extends Service {
       writepath: avatar,
     }).then(_filename => {
       // 更新图片名称
-      console.log(_filename);
       const updates = {
         avatar: _filename._filename,
       };
@@ -56,7 +53,6 @@ class Users extends Service {
   async getInfo({
     username,
   }) {
-    console.log(username);
     // 调用service方法
     return this.ctx.model.Users.findAll({
       where: {
